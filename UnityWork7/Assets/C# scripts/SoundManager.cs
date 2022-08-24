@@ -46,19 +46,21 @@ public class SoundManager : MonoBehaviour
         clickSound.Play();
         mainMenuSound.Play();
         rules.Pause();
+        rules.time = 0;
         rulesCreen.Pause();
     }
     public void OnOffSounds()
     {
-        if (soundOn == false)
+
+        if (soundOn == true)
         {
-            AudioListener.volume = 1f;
-            soundOn = true;
-        }
-        else if (soundOn == true)
-        {
-            AudioListener.volume = 0f;
+            AudioListener.pause = false;
             soundOn = false;
+        }
+        else if (soundOn == false)
+        {
+            AudioListener.pause = true;
+            soundOn = true;
         }
     }
 

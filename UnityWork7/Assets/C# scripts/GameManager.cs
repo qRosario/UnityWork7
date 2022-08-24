@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        mainMenuScreen.SetActive(true);
+        gameScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
         ResoursesCountText();
     }
     private void Update()
