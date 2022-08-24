@@ -5,8 +5,8 @@ public class HarvestTimer : MonoBehaviour
 {
     private Image _harvestTimer;
     private float _currentTime;
-
-    public GameManager GameManager;
+   
+    public GameManager gameManager;
     public bool harvestValue;
 
 
@@ -19,11 +19,11 @@ public class HarvestTimer : MonoBehaviour
     {
         harvestValue = false;
         _currentTime += Time.deltaTime;
-        if (_currentTime >= GameManager.harvestTimer)
+        if (_currentTime >= gameManager.harvestTimer)
         {
             harvestValue = true;
             _currentTime = 0;
         }
-        _harvestTimer.fillAmount = _currentTime / GameManager.harvestTimer;
+        _harvestTimer.fillAmount = _currentTime / gameManager.harvestTimer;
     }
 }

@@ -6,7 +6,8 @@ public class RaidTimer : MonoBehaviour
     private Image _raidTimer;
     private float _currentTime;
 
-    public GameManager GameManager;
+    public GameManager gameManager;
+    public bool raidvalue;
 
 
     private void Start()
@@ -16,11 +17,13 @@ public class RaidTimer : MonoBehaviour
     }
     private void Update()
     {
+        raidvalue = false;
         _currentTime += Time.deltaTime;
-        if (_currentTime >= GameManager.raidTimer)
+        if (_currentTime >= gameManager.raidTimer)
         {
+            raidvalue = true;
             _currentTime = 0;
         }
-        _raidTimer.fillAmount = _currentTime / GameManager.raidTimer;
+        _raidTimer.fillAmount = _currentTime / gameManager.raidTimer;
     }
 }
