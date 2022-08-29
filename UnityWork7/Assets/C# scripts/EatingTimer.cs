@@ -4,25 +4,25 @@ using UnityEngine.UI;
 public class EatingTimer : MonoBehaviour
 {
     private Image _eatingTimer;
-    private float _currentTime;
 
+    public float currentTime;
     public GameManager gameManager;
-    public bool EatingValue;
+    public bool eatingValue;
 
     private void Start()
     {
         _eatingTimer = GetComponent<Image>();
-        _currentTime = 0;
+        currentTime = 0;
     }
     private void Update()
     {
-        EatingValue = false;
-        _currentTime += Time.deltaTime;
-        if (_currentTime >= gameManager.eatingTimer)
+        eatingValue = false;
+        currentTime += Time.deltaTime;
+        if (currentTime >= gameManager.eatingTimer)
         {
-            EatingValue = true;
-            _currentTime = 0;
+            eatingValue = true;
+            currentTime = 0;
         }
-        _eatingTimer.fillAmount = _currentTime / gameManager.eatingTimer;
+        _eatingTimer.fillAmount = currentTime / gameManager.eatingTimer;
     }
 }

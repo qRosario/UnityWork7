@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class PeasantCreateTimer : MonoBehaviour
 {
     private Image _peasantCreateTimer;
-    private float _currentTime;
 
+    public float currentTime;
     public GameManager gameManager;
     public bool timerActive;
 
@@ -13,20 +13,20 @@ public class PeasantCreateTimer : MonoBehaviour
     {
         timerActive = false;
         _peasantCreateTimer = GetComponent<Image>();
-        _currentTime = 0;
+        currentTime = 0;
     }
     private void Update()
     {
         
         if (timerActive == true)
         {
-            _currentTime += Time.deltaTime;
-            _peasantCreateTimer.fillAmount = 0 + _currentTime / gameManager.peasantCreateTime;
+            currentTime += Time.deltaTime;
+            _peasantCreateTimer.fillAmount = 0 + currentTime / gameManager.peasantCreateTime;
         }
-        if (_currentTime >= gameManager.peasantCreateTime)
+        if (currentTime >= gameManager.peasantCreateTime)
         {
             timerActive = false;
-            _currentTime = 0;
+            currentTime = 0;
             _peasantCreateTimer.fillAmount = 1;
             gameManager.peasantButton.interactable = true;
             gameManager.peasantCount += 1;
@@ -42,6 +42,13 @@ public class PeasantCreateTimer : MonoBehaviour
                 gameManager.peasantButton.interactable = true;
             }
         }
+
+    }
+    public void CreatePeasant()
+    {
+        timerActive = true;
+        gameManager.wheatCount -= gameManager.peasantCost;
+        gameManager.peasantButton.interactable = false;
 
     }
 }

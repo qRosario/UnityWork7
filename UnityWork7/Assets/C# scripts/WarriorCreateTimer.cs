@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class WarriorCreateTimer : MonoBehaviour
 {
     private Image _warriorCreateTimer;
-    private float _currentTime;
 
+    public float currentTime;
     public GameManager gameManager;
     public bool timerActive;
 
@@ -13,20 +13,20 @@ public class WarriorCreateTimer : MonoBehaviour
     {
         timerActive = false;
         _warriorCreateTimer = GetComponent<Image>();
-        _currentTime = 0;
+        currentTime = 0;
     }
     private void Update()
     {
 
         if (timerActive == true)
         {
-            _currentTime += Time.deltaTime;
-            _warriorCreateTimer.fillAmount = 0 + _currentTime / gameManager.warriorCreateTime;
+            currentTime += Time.deltaTime;
+            _warriorCreateTimer.fillAmount = 0 + currentTime / gameManager.warriorCreateTime;
         }
-        if (_currentTime >= gameManager.warriorCreateTime)
+        if (currentTime >= gameManager.warriorCreateTime)
         {
             timerActive = false;
-            _currentTime = 0;
+            currentTime = 0;
             _warriorCreateTimer.fillAmount = 1;
             gameManager.warriorButton.interactable = true;
             gameManager.warriosCount += 1;
@@ -43,5 +43,11 @@ public class WarriorCreateTimer : MonoBehaviour
             }
         }
 
+    }
+    public void CreateWarrior()
+    {
+        timerActive = true;
+        gameManager.wheatCount -= gameManager.warriorCost;
+        gameManager.warriorButton.interactable = false;
     }
 }

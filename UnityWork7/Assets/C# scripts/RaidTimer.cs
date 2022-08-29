@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class RaidTimer : MonoBehaviour
 {
     private Image _raidTimer;
-    private float _currentTime;
 
+    public int raidCount;
+    public int nextRaidEnemyCount;
+    public float currentTime;
     public GameManager gameManager;
     public bool raidvalue;
 
@@ -13,17 +15,31 @@ public class RaidTimer : MonoBehaviour
     private void Start()
     {
         _raidTimer = GetComponent<Image>();
-        _currentTime = 0;
+        currentTime = 0;
     }
     private void Update()
     {
         raidvalue = false;
-        _currentTime += Time.deltaTime;
-        if (_currentTime >= gameManager.raidTimer)
+        currentTime += Time.deltaTime;
+        if (currentTime >= gameManager.raidTimer)
         {
             raidvalue = true;
-            _currentTime = 0;
+            currentTime = 0;
         }
-        _raidTimer.fillAmount = _currentTime / gameManager.raidTimer;
+        _raidTimer.fillAmount = currentTime / gameManager.raidTimer;
+        if (raidvalue == true)
+        {
+            raidCount++;
+            if (raidCount > 3)
+            {
+                gameManager.enemyWarroirsCount++;
+                gameManager.warriosCount -= gameManager.enemyWarroirsCount;
+                nextRaidEnemyCount = gameManager.enemyWarroirsCount + 1;
+            }
+            if (raidCount == 3)
+            {
+                nextRaidEnemyCount = 1;
+            }
+        }
     }
 }

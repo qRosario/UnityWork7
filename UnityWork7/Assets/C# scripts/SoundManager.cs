@@ -1,65 +1,75 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource clickSound;
-    public AudioSource mainMenuSound;
-    public AudioSource gameSound;
-    public AudioSource warroirSound;
-    public AudioSource peasantSound;
-    public AudioSource rules;
-    public AudioSource rulesCreen;
-    public GameManager gameManager;
-    public bool soundOn;
-
+    [SerializeField] private AudioSource _clickSound;
+    [SerializeField] private AudioSource _mainMenuSound;
+    [SerializeField] private AudioSource _gameSound;
+    [SerializeField] private AudioSource _warroirSound;
+    [SerializeField] private AudioSource _peasantSound;
+    [SerializeField] private AudioSource _rules;
+    [SerializeField] private GameManager _gameManager;
+    private bool _soundOn;
     private void Start()
     {
-        mainMenuSound.Play();
+        _mainMenuSound.Play();
+    }
+    public void BackToMenu()
+    {
+        _clickSound.Play();
+        _mainMenuSound.Play();
+        _mainMenuSound.time = 0;
+        _gameSound.Pause();
     }
     public void NewGameButton()
     {
-        clickSound.Play();
-        mainMenuSound.Pause();
-        gameSound.Play();
+        _clickSound.Play();
+        _mainMenuSound.Pause();
+        _gameSound.Play();
+        _gameSound.time = 0;
     }
     public void PeasantButton()
     {
-        clickSound.Play();
-        peasantSound.Play();
+        _clickSound.Play();
+        _peasantSound.Play();
     }
     public void WarriorButton()
     {
-        clickSound.Play();
-        warroirSound.Play();
+        _clickSound.Play();
+        _warroirSound.Play();
     }
     public void RulesButton()
     {
-        clickSound.Play();
-        rulesCreen.Play();
-        rules.Play();
-        mainMenuSound.Pause();
+        _clickSound.Play();
+        _rules.Play();
+        _mainMenuSound.Pause();
     }
     public void ReturnBotton()
     {
-        clickSound.Play();
-        mainMenuSound.Play();
-        rules.Pause();
-        rules.time = 0;
-        rulesCreen.Pause();
+        _clickSound.Play();
+        _mainMenuSound.Play();
+        _rules.Pause();
+        _rules.time = 0;
+    }
+    public void Click()
+    {
+        _clickSound.Play();
     }
     public void OnOffSounds()
     {
 
-        if (soundOn == true)
+        if (_soundOn == true)
         {
+            _clickSound.Stop();
+            _peasantSound.Stop();
+            _warroirSound.Stop();
             AudioListener.pause = false;
-            soundOn = false;
+            _soundOn = false;
         }
-        else if (soundOn == false)
+        else if (_soundOn == false)
         {
             AudioListener.pause = true;
-            soundOn = true;
+            _soundOn = true;
         }
     }
 
