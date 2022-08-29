@@ -31,13 +31,16 @@ public class WarriorCreateTimer : MonoBehaviour
             gameManager.warriorButton.interactable = true;
             gameManager.warriosCount += 1;
         }
-        if(gameManager.wheatCount < gameManager.warriosCount)
+        if(gameManager.wheatCount < gameManager.warriorCost)
         {
             gameManager.warriorButton.interactable = false;
         }
-        else
+        if (timerActive == false)
         {
-            gameManager.warriorButton.interactable = true;
+            if (gameManager.wheatCount > gameManager.warriorCost)
+            {
+                gameManager.warriorButton.interactable = true;
+            }
         }
 
     }

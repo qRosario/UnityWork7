@@ -35,9 +35,12 @@ public class PeasantCreateTimer : MonoBehaviour
         {
             gameManager.peasantButton.interactable = false;
         }
-        else
+        if(timerActive == false)
         {
-            gameManager.peasantButton.interactable = true;
+            if (gameManager.wheatCount > gameManager.peasantCost)
+            {
+                gameManager.peasantButton.interactable = true;
+            }
         }
 
     }

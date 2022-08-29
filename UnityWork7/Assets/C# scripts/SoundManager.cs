@@ -16,7 +16,6 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         mainMenuSound.Play();
-        soundOn = true;
     }
     public void NewGameButton()
     {
