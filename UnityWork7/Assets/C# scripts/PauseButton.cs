@@ -57,5 +57,6 @@ public class PauseButton : MonoBehaviour
         gameManager.wheatCount = 40;
         raidTimer.raidCount = 0;
         gameManager.enemyWarroirsCount = 0;
+        raidTimer.nextRaidEnemyCount = 0;
     }
 }

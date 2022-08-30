@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverScreen;
     [SerializeField] private GameObject _mainMenuScreen;
     [SerializeField] private GameObject _gameScreen;
+    [SerializeField] private GameObject _vinScreen;
     [SerializeField] private int _wheatToEating;
     [SerializeField] private int _wheatPerPeasant;
     [SerializeField] private Text _countText;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         _gameOverScreen.SetActive(false);
         _pauseGameScreen.SetActive(false);
         _rulesScreen.SetActive(false);
+        _vinScreen.SetActive(false);
         ResoursesCountText();
     }
     private void Update()
@@ -60,10 +62,23 @@ public class GameManager : MonoBehaviour
         ResoursesCountText();
         EnemyCountText();
         RaidCountCounter();
+        RaidEnemyNull();
         if (warriosCount < 0)
         {
             _gameScreen.SetActive(false);
             _gameOverScreen.SetActive(true);
+        }
+        if (raidTime.raidCount > 14)
+        {
+            if(warriosCount >= 0)
+            {
+                _gameScreen.SetActive(false);
+                _vinScreen.SetActive(true);
+            }
+        }
+        if(wheatCount <= 0)
+        {
+            wheatCount =0;
         }
 }
     private void ResoursesCountText()
@@ -78,5 +93,17 @@ public class GameManager : MonoBehaviour
     {
         _raidCounter.text = raidTime.raidCount.ToString();
     }
+    private void RaidEnemyNull()
+    {
+        if(raidTime.raidCount == 0)
+        {
+            _enemyCount.text = 0.ToString();
+        }
+    }
+    public void ExitToGame()
+    {
+        Application.Quit();
+    }
 
 }
+
