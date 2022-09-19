@@ -85,14 +85,17 @@ public class GameManager : MonoBehaviour
     {
         _countText.text = wheatCount + "\n" + warriosCount + "\n" + peasantCount;
     }
+
     private void EnemyCountText()
     {
         _enemyCount.text = raidTime.nextRaidEnemyCount.ToString();
     }
+
     private void RaidCountCounter()
     {
         _raidCounter.text = raidTime.raidCount.ToString();
     }
+
     private void RaidEnemyNull()
     {
         if(raidTime.raidCount == 0)
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
             _enemyCount.text = 0.ToString();
         }
     }
+
     public void ExitToGame()
     {
         Application.Quit();
